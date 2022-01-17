@@ -1,0 +1,46 @@
+.main-overall {
+  display: grid;
+  /* padding-top: 55px; */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 0.1fr);
+}
+
+.background-div,
+.home-overall {
+  grid-row: 1 / 11;
+}
+
+.background-div {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  grid-column: 1 / 11;
+  z-index: 1;
+}
+
+.home-overall {
+  grid-column: 2 / 10;
+  z-index: 2;
+}
+
+.form-overall {
+  display: grid;
+  grid-column: 2 / 10;
+  z-index: 2;
+}
+
+.background-div,
+.form-overall {
+  grid-row: 1 / 11;
+}
+
+.overview-overall {
+  grid-column: 2 / 10;
+  z-index: 2;
+}
+
+.background-div,
+.overview-overall {
+  grid-row: 1 / 11;
+}

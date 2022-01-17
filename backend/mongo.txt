@@ -1,0 +1,31 @@
+brew services start mongodb-community@5.0
+brew services stop mongodb-community@5.0
+
+// GENERAL
+mongo - enter mongo shell
+quit() - exit mongo shell
+show dbs - list all dbs on your computer
+db - shows the database currently in use
+show collections - shows all the collections created in the current database
+
+// CREATING
+use {database name goes here} - if no database by that name exists, it creates a new one, otherwise it selects that database to be used by db commands
+db.{collection name goes here}.insertMany({array of several json-objects/documents goes here}) - if the collection isn't created already, it creates it when this command is run
+db.{collection name goes here}.insertOne({one json-object/document goes here})
+
+// READING
+db.{collection name goes here}.find() - shows all the documents in that collection 
+db.{collection name goes here}.find({name: "abc"}) - shows the document(s) with the name set to abc
+db.{collection name goes here}.find({price: {$lte: 500}}) - shows the document(s) with the price less than 500 (the $ sign is reserved for mongo operators, in this case the <= operator)
+db.{collection name goes here}.find({ price: {$lte: 500}, rating: {$gte: 4.2}}) - shows the document(s) with the price less than 500 AND rating greater that 4.2
+db.{collection name goes here}.find( {$or: [{price: {$lte: 500}}, {rating: {$gte: 4.2}} ]} ) - shows the document(s) with the price less than 500 OR rating greater that 4.2 (we could specify even more conditions in the array)
+db.{collection name goes here}.find( {$or: [{price: {$lte: 500}}, {rating: {$gte: 4.2}} ]}, {name: 1} ) - same as above except the output data only includes the name property
+
+// UPDATING
+db.{collection name goes here}.updateOne({name: "abc"}, {$set: {price: 700}}) - first object is a filter, so the document with name abc is updated, and second one specifies what to update, so here we set the price to 700 (if multiple are selected, only first doc is updates since we're usind updateOne)
+db.{collection name goes here}.replaceOne() - first argument is a filter object and second one the new document we want
+(there's also "many" operations for both of the above)
+
+// DELETING
+db.{collection name goes here}.deleteOne({ price: {$lte: 1000}}) - deletes the first document with price <= 1000
+db.{collection name goes here}.deleteMany({}) - deletes all documents in that collection
